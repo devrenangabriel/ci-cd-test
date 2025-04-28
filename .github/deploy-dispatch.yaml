@@ -1,0 +1,26 @@
+name: 🚀 Disparar Deploy Externo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dispatch-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔑 Configurar token
+        uses: actions/checkout@v3
+
+      - name: 🚀 Disparar Workflow no Repositório de Deploy
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repository: team-autovist/webapp-cicd
+          event-type: deploy-site
+          client-payload: |
+            {
+              "branch": "${{ github.ref_name }}",
+              "repository": "${{ github.repository }}"
+            }
