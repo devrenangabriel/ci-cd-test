@@ -17,10 +17,10 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repository: team-autovist/webapp-cicd
+          repository: ArthurBitt/repo_listener_teste
           event-type: deploy-site
           client-payload: |
             {
               "branch": "${{ github.ref_name }}",
-              "repository": "${{ github.repository }}"
+              "repository": "devrenangabriel/ci-cd-test"
             }
